@@ -57,6 +57,7 @@ class LianBiaoZhongDaoShuDiGe:
             p2 = p2.next
         return p1
 
+
 # 141. 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
 class LinkedListCycle:
     def hasCycle(self, head: ListNode) -> bool:
@@ -67,3 +68,27 @@ class LinkedListCycle:
             node_set.add(head)
             head = head.next
         return False
+
+
+# 24. 两两交换链表中的节点 https://leetcode-cn.com/problems/swap-nodes-in-pairs/
+class SwapNodesInPairs:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        p1 = head
+        p2 = head.next
+        prev = None
+        res = p2
+        while p2 is not None:
+            temp = p2.next
+            p2.next = p1
+            if prev is not None:
+                prev.next = p2
+            prev = p1
+            p1 = temp
+            if p1 is None:
+                prev.next = p1
+                return res
+            p2 = p1.next
+        prev.next = p1
+        return res
