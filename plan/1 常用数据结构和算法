@@ -10,7 +10,10 @@
 例题：剑指 Offer 24. 反转链表 https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
      剑指 Offer 22. 链表中倒数第k个节点 https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
      141. 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
-使用场景：
+使用场景：相邻元素的交换
+        有方向地前进
+        固定的间隔
+        环
 
 虚假链表头
 例题：24. 两两交换链表中的节点 https://leetcode-cn.com/problems/swap-nodes-in-pairs/

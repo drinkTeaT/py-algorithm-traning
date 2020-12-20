@@ -38,3 +38,32 @@ class FanZhuanLianBiao:
             p2 = p2.next
         p1.next = prev
         return p1
+
+
+# 剑指 Offer 22. 链表中倒数第k个节点 https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
+class LianBiaoZhongDaoShuDiGe:
+    def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
+        if head is None:
+            return head
+        p1 = head
+        p2 = head
+        while k > 1:
+            p2 = p2.next
+            if p2 is None:
+                return None
+            k -= 1
+        while p2.next is not None:
+            p1 = p1.next
+            p2 = p2.next
+        return p1
+
+# 141. 环形链表 https://leetcode-cn.com/problems/linked-list-cycle/
+class LinkedListCycle:
+    def hasCycle(self, head: ListNode) -> bool:
+        node_set = set()
+        while head is not None:
+            if head in node_set:
+                return True
+            node_set.add(head)
+            head = head.next
+        return False
