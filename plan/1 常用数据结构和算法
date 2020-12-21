@@ -17,7 +17,7 @@
 
 虚假链表头
 例题：24. 两两交换链表中的节点 https://leetcode-cn.com/problems/swap-nodes-in-pairs/
-     技巧：在下个循环里使用上个循环最后的节点关联这个循环的第一个节点，跳出循环也要记得关联
+        技巧：在下个循环里使用上个循环最后的节点关联这个循环的第一个节点，跳出循环也要记得关联
      自定义：1234 随机指定翻转开始和结束，例如2和3翻转，返回应该是1324
      25. K 个一组翻转链表 https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
 使用场景：翻转

@@ -1,11 +1,10 @@
-from common.common_class import ListNode, Generate
+from common.common_class import *
 
 
-class SwapNodesInPairs:
-    def swapPairs(self, head: ListNode) -> ListNode:
-        if head is None:
+class ReverseNodesInKGroup:
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        if head is None or k == 1:
             return head
-        k = 2
         prev = None
         p1 = head
         p2 = head.next
@@ -18,7 +17,7 @@ class SwapNodesInPairs:
                 if p2 is None:
                     return res if res is not None else p1
             # 开始翻转
-            self.__do_reverse(prev, p1, p2)
+            self.do_reverse(prev, p1, p2)
             prev = p1
             res = p2 if res is None else res
             p1 = p1.next
@@ -27,7 +26,7 @@ class SwapNodesInPairs:
             p2 = p1.next
         return res if res is not None else p1
 
-    def __do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
+    def do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
         prev = None
         p1 = start
         p2 = start.next
@@ -42,10 +41,9 @@ class SwapNodesInPairs:
             last.next = p1
         tail.next = p2
 
-
-node = Generate.create_nodes([1])
-s = SwapNodesInPairs()
-node = s.swapPairs(node)
+s = ReverseNodesInKGroup()
+node = Generate.create_nodes(list(i for i in range(20)))
+node = s.reverseKGroup(node,4)
 while node is not None:
     print(node.val)
     node = node.next
