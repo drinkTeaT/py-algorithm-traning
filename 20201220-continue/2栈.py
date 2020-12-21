@@ -19,3 +19,5 @@ class ValidParentheses:
                 if my_stack.pop() != "{":
                     return False
         return len(my_stack) == 0
+
+# 739. 每日温度 https://leetcode-cn.com/problems/daily-temperatures/
