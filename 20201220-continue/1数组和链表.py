@@ -88,6 +88,20 @@ class LinkedListCycle:
             head = head.next
         return False
 
+    # 计数器，快慢指针
+    def hasCycle1(self, head: ListNode) -> bool:
+        p1 = head
+        p2 = head
+        count = 0
+        while p2 is not None:
+            p2 = p2.next
+            count += 1
+            if count % 2 == 0:
+                if p1 == p2:
+                    return True
+                p1 = p1.next
+        return False
+
 
 # 24. 两两交换链表中的节点 https://leetcode-cn.com/problems/swap-nodes-in-pairs/
 class SwapNodesInPairs:
