@@ -26,6 +26,7 @@ class ValidAnagram:
 # 剑指 Offer 24. 反转链表 https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
 class FanZhuanLianBiao:
     """ 在下一个循环里完成首尾相连，即本循环只做一次首尾相连 """
+
     def reverseList(self, head: ListNode) -> ListNode:
         if head is None:
             return head
@@ -41,6 +42,7 @@ class FanZhuanLianBiao:
         return p1
 
     """ 本循环里完成两次首尾相连，有重复连接，建议使用第一种方式 """
+
     def reverseList1(self, head: ListNode) -> ListNode:
         if head is None:
             return head
@@ -110,5 +112,101 @@ class SwapNodesInPairs:
         prev.next = p1
         return res
 
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if head is None:
+            return head
+        k = 2
+        prev = None
+        p1 = head
+        p2 = head.next
+        res = None
+        while p2 is not None:
+            c = k
+            while c > 2:
+                c -= 1
+                p2 = p2.next
+                if p2 is None:
+                    return res if res is not None else p1
+            # 开始翻转
+            self.__do_reverse(prev, p1, p2)
+            prev = p1
+            res = p2 if res is None else res
+            p1 = p1.next
+            if p1 is None:
+                return res
+            p2 = p1.next
+        return res if res is not None else p1
+
+    def __do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
+        prev = None
+        p1 = start
+        p2 = start.next
+        tail = p1
+        while p2 is not end.next:
+            p1.next = prev
+            prev = p1
+            p1 = p2
+            p2 = p2.next
+        p1.next = prev
+        if last is not None:
+            last.next = p1
+        tail.next = p2
+
+
+# 自定义：1234 随机指定翻转开始和结束，例如2和3翻转，返回应该是1324
+class ReverseGapOfNodes:
+    def do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
+        prev = None
+        p1 = start
+        p2 = start.next
+        tail = p1
+        while p2 is not end.next:
+            p1.next = prev
+            prev = p1
+            p1 = p2
+            p2 = p2.next
+        p1.next = prev
+        last.next = p1
+        tail.next = p2
+
 
 # 25. K 个一组翻转链表 https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
+class ReverseNodesInKGroup:
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        if head is None or k == 1:
+            return head
+        prev = None
+        p1 = head
+        p2 = head.next
+        res = None
+        while p2 is not None:
+            c = k
+            while c > 2:
+                c -= 1
+                p2 = p2.next
+                if p2 is None:
+                    return res if res is not None else p1
+            # 开始翻转
+            self.do_reverse(prev, p1, p2)
+            prev = p1
+            res = p2 if res is None else res
+            p1 = p1.next
+            if p1 is None:
+                return res
+            p2 = p1.next
+        return res if res is not None else p1
+
+    def do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
+        prev = None
+        p1 = start
+        p2 = start.next
+        tail = p1
+        while p2 is not end.next:
+            p1.next = prev
+            prev = p1
+            p1 = p2
+            p2 = p2.next
+        p1.next = prev
+        if last is not None:
+            last.next = p1
+        tail.next = p2
