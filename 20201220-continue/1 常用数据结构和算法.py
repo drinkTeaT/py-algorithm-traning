@@ -25,6 +25,7 @@ class ValidAnagram:
 
 # 剑指 Offer 24. 反转链表 https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
 class FanZhuanLianBiao:
+    """ 在下一个循环里完成首尾相连，即本循环只做一次首尾相连 """
     def reverseList(self, head: ListNode) -> ListNode:
         if head is None:
             return head
@@ -37,6 +38,22 @@ class FanZhuanLianBiao:
             p1 = p2
             p2 = p2.next
         p1.next = prev
+        return p1
+
+    """ 本循环里完成两次首尾相连，有重复连接，建议使用第一种方式 """
+    def reverseList1(self, head: ListNode) -> ListNode:
+        if head is None:
+            return head
+        p1 = head
+        p2 = p1.next
+        prev = None
+        while p2 is not None:
+            temp = p2.next
+            p1.next = prev
+            p2.next = p1
+            prev = p1
+            p1 = p2
+            p2 = temp
         return p1
 
 
@@ -92,3 +109,6 @@ class SwapNodesInPairs:
             p2 = p1.next
         prev.next = p1
         return res
+
+
+# 25. K 个一组翻转链表 https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
