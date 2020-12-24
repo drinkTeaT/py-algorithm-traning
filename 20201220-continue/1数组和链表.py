@@ -61,6 +61,7 @@ class FanZhuanLianBiao:
 
 # 剑指 Offer 22. 链表中倒数第k个节点 https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
 class LianBiaoZhongDaoShuDiGe:
+    # 运行效率比第二种要差
     def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
         if head is None:
             return head
@@ -72,6 +73,21 @@ class LianBiaoZhongDaoShuDiGe:
                 return None
             k -= 1
         while p2.next is not None:
+            p1 = p1.next
+            p2 = p2.next
+        return p1
+
+    def getKthFromEnd1(self, head: ListNode, k: int) -> ListNode:
+        if head is None:
+            return head
+        p1 = head
+        p2 = head.next
+        while k > 1 and p2 is not None:
+            k -= 1
+            p2 = p2.next
+        if k != 1:
+            return None
+        while p2 is not None:
             p1 = p1.next
             p2 = p2.next
         return p1
