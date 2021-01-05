@@ -119,6 +119,23 @@ class LinkedListCycle:
         return False
 
 
+# 自定义：1234 随机指定翻转开始和结束，例如2和3翻转，返回应该是1324。翻转链表的变体
+class ReverseGapOfNodes:
+    def do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
+        prev = None
+        curr = start
+        next_one = start.next
+        p1 = end.next
+        while next_one != end.next:
+            curr.next = prev
+            prev = curr
+            curr = next_one
+            next_one = next_one.next
+        curr.next = prev
+        last.next = curr
+        start.next = p1
+
+
 # 24. 两两交换链表中的节点 https://leetcode-cn.com/problems/swap-nodes-in-pairs/
 class SwapNodesInPairs:
     def swapPairs(self, head: ListNode) -> ListNode:
@@ -181,22 +198,6 @@ class SwapNodesInPairs:
         if last is not None:
             last.next = p1
         tail.next = p2
-
-
-# 自定义：1234 随机指定翻转开始和结束，例如2和3翻转，返回应该是1324
-class ReverseGapOfNodes:
-    def do_reverse(self, last: ListNode, start: ListNode, end: ListNode):
-        prev = None
-        p1 = start
-        p2 = start.next
-        tail = p1
-        while p2 is not end.next:
-            p1.next = prev
-            prev = p1
-            p1 = p2
-            p2 = p2.next
-        p1.next = prev
-        last.next = p1
         tail.next = p2
 
 
