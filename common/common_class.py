@@ -17,3 +17,11 @@ class Generate:
             node = node.next
             i += 1
         return root
+
+
+class PrintUtil:
+    @staticmethod
+    def print_nodes(head: ListNode):
+        while head is not None:
+            print(head.val)
+            head = head.next
