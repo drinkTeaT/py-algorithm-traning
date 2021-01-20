@@ -1,0 +1,50 @@
+结论：二叉树，N叉树等其他数据结构的遍历都是基于数组和链表。二叉树就是两条链表，N叉树是N条链表。
+1 数组遍历框架
+void traverse(int[] arr){
+    for(int i = 0;i < arr.length;i++){
+        // 访问arr[i]
+    }
+}
+
+2 链表遍历框架
+/* 基本的单链表节点 */
+class ListNode {
+    int val;
+    ListNode next;
+}
+
+/* 迭代 */
+void traverse(ListNode head){
+    for(ListNode p = head;p != null;p = p.next){
+        // 访问 p.val
+    }
+}
+
+/* 递归 */
+void traverse(ListNode head){
+    traverse(head.next);
+}
+
+2.1 链表扩展为二叉树
+/* 基本的二叉树节点 */
+class TreeNode {
+    int val;
+    TreeNode left, right;
+}
+/* 二叉树遍历框架 */
+void traverse(TreeNode root){
+    traverse(root.left);
+    traverse(root.right);
+}
+
+2.2 链表扩展为N叉树
+/* 基本的 N 叉树节点 */
+class TreeNode {
+    int val;
+    TreeNode[] children;
+}
+void traverse(TreeNode root){
+    for(TreeNode node : root.children){
+        traverse(node);
+    }
+}
