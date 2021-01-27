@@ -1,11 +1,7 @@
-# 输入: [2,1,5,6,2,3]
-# 输出: 10
-# 向右遍历，记录最左边的坐标。遇到大于的： 遇到小于的：记录面积最大值，继续向右 遇到等于的：继续向右
-from typing import List
-
-
-def solve(heights: list[int]) -> int:
-    return 0
-
-
-
+# 224. 基本计算器 https://leetcode-cn.com/problems/basic-calculator/
+# 实现一个基本的计算器来计算一个简单的字符串表达式 s 的值。
+# 输入：s = "1 + 1"
+# 输出：2
+#
+# 输入：s = "(1+(4+5+2)-3)+(6+8)"
+# 输出：23
