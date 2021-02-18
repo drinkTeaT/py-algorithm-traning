@@ -1,0 +1,79 @@
+1 归并排序
+void sort(int[]A,intlo,inthi){
+//判断是否只剩下最后一个元素
+if(lo>=hi)return;
+
+//从中间将数组分成两个部分
+int mid=lo+(hi-lo)/2;
+
+//分别递归地将左右两半排好序
+sort(A,lo,mid);
+sort(A,mid+1,hi);
+
+//将排好序的左右两半合并
+merge(A,lo,mid,hi);
+}
+
+void merge(int[] nums,int lo,int mid,int hi){
+//复制一份原来的数组
+int[] copy=nums.clone();
+
+//定义一个k指针表示从什么位置开始修改原来的数组，i指针表示左半边的起始位置，j表示右半边的起始位置
+int k=lo,i=lo,j=mid+1;
+
+while(k<=hi){
+if(i>mid){
+nums[k++]=copy[j++];
+}else if(j>hi){
+nums[k++]=copy[i++];
+}else if(copy[j]<copy[i]){
+nums[k++]=copy[j++];
+}else{
+nums[k++]=copy[i++];
+}
+}
+}
+
+其中，While 语句比较，一共可能会出现四种情况。
+右边的数小于左边的数，将右边的数拷贝到合适的位置，j 指针往前移动一位。
+
+左边的数小于右边的数，将左边的数拷贝到合适的位置，i 指针往前移动一位。
+
+左半边的数都处理完毕，只剩下右半边的数，只需要将右半边的数逐个拷贝过去。
+
+右半边的数都处理完毕，只剩下左半边的数，只需要将左半边的数逐个拷贝过去就好。
+
+
+2 快速排序（Quick Sort）
+把原始的数组筛选成较小和较大的两个子数组，然后递归地排序两个子数组。
+
+void sort(int[]nums,intlo,inthi){
+if(lo>=hi)return;//判断是否只剩下一个元素，是，则直接返回
+
+//利用partition函数找到一个随机的基准点
+int p=partition(nums,lo,hi);
+
+//递归地对基准点左半边和右半边的数进行排序
+sort(nums,lo,p-1);
+sort(nums,p+1,hi);
+}
+
+int partition(int[]nums,int lo,int hi){
+//随机选择一个数作为基准值，nums[hi]就是基准值
+swap(nums,randRange(lo,hi),hi);
+
+int i,j;
+
+//从左到右用每个数和基准值比较，若比基准值小，则放到指针i所指向的位置。循环完毕后，i指针之前的数都比基准值小
+for(i=lo,j=lo;j<hi;j++){
+if(nums[j]<=nums[hi]){
+swap(nums,i++,j);
+}
+}
+
+//末尾的基准值放置到指针i的位置，i指针之后的数都比基准值大
+swap(nums,i,j);
+
+//返回指针i，作为基准点的位置
+return i;
+}
