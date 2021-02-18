@@ -1,5 +1,5 @@
 1 归并排序
-void sort(int[]A,intlo,inthi){
+void sort(int[] A,int lo,int hi){
 //判断是否只剩下最后一个元素
 if(lo>=hi)return;
 
